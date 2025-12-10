@@ -1,27 +1,63 @@
 <script setup>
 import { ref, watch } from 'vue';
+import { useTheme } from 'vuetify';
 import { useSpeechRecognition } from '@/composables/useSpeechRecognition';
 
+// Composable per al reconeixement de veu
 const { isListening, transcript, interimTranscript, error, start } = useSpeechRecognition();
 
+// Control del tema de Vuetify (Dark/Light)
+const theme = useTheme();
+
+// Refs per a l'estat de la interfície
 const uiMessage = ref("Prem el botó per començar...");
 const statusColor = ref("primary");
 
+// Refs per a la notificació (Snackbar)
+const snackbar = ref(false);
+const snackbarText = ref('');
+
+// Funció per reiniciar l'estat visual
+const resetUI = () => {
+  uiMessage.value = "Prem el botó per començar...";
+  statusColor.value = "primary";
+};
+
+// Lògica principal que reacciona a les comandes de veu
 watch(transcript, (newText) => {
   const command = newText.toLowerCase().trim();
   
   if (command.includes('saluda')) {
     uiMessage.value = "Hola! Benvingut a l'aplicació.";
     statusColor.value = "success";
-    alert("Hola!"); 
+    alert("Hola!");
   } 
   else if (command.includes('ajuda')) {
     uiMessage.value = "Aquesta és una prova de concepte.";
     statusColor.value = "info";
-  } 
+  }
+  // Tasca 1: Comanda "Esborra"
+  else if (command.includes('esborra') || command.includes('borrar')) {
+    resetUI();
+  }
+  // Tasca 2: Control del Tema
+  else if (command.includes('mode fosc')) {
+    theme.global.name.value = 'dark';
+    uiMessage.value = "Tema canviat a fosc.";
+    statusColor.value = "primary";
+  }
+  else if (command.includes('mode clar')) {
+    theme.global.name.value = 'light';
+    uiMessage.value = "Tema canviat a clar.";
+    statusColor.value = "primary";
+  }
+  // Tasca 3: Comanda no reconeguda amb Snackbar
   else {
     uiMessage.value = `Comanda no reconeguda: "${newText}"`;
     statusColor.value = "warning";
+    // Mostrem la notificació
+    snackbarText.value = `Comanda no reconeguda: "${newText}"`;
+    snackbar.value = true;
   }
 });
 </script>
@@ -62,6 +98,16 @@ watch(transcript, (newText) => {
         </v-btn>
       </v-card-actions>
     </v-card>
+
+    <!-- Tasca 3: Component Snackbar per a errors -->
+    <v-snackbar
+      v-model="snackbar"
+      :timeout="3000"
+      color="red-lighten-1"
+      location="bottom"
+    >
+      {{ snackbarText }}
+    </v-snackbar>
   </v-container>
 </template>
 

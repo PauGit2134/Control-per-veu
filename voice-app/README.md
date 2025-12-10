@@ -1,3 +1,41 @@
+# Prova de Concepte: Control per Veu
+
+Aquesta és una aplicació de prova de concepte per a un control per veu utilitzant Vue 3, Vuetify i Electron.
+
+## Comandes del Projecte
+
+### 1. Executar en el Navegador
+
+Per iniciar l'aplicació en mode de desenvolupament web (en el teu navegador):
+
+```bash
+npm run dev
+```
+**Nota:** Perquè el reconeixement de veu funcioni en el navegador, aquest necessita un context segur (HTTPS). Si tens problemes de permisos (`not-allowed`), hauràs d'habilitar HTTPS en el servidor de desenvolupament.
+
+### 2. Executar amb Electron
+
+Per iniciar l'aplicació com una aplicació d'escriptori utilitzant Electron:
+
+```bash
+npm run dev:electron
+```
+**Nota:** Abans d'executar aquest comandament, assegura't que el plugin d'Electron estigui activat en el fitxer `vite.config.mjs`.
+
+## Comandes de Veu Disponibles
+
+Un cop l'aplicació està escoltant, pots utilitzar les següents comandes de veu:
+
+- **"Saluda"**: Mostra una alerta de salutació.
+- **"Ajuda"**: Mostra un missatge d'ajuda a la targeta.
+- **"Esborra"** o **"Borrar"**: Reinicia la interfície al seu estat inicial.
+- **"Mode fosc"**: Canvia el tema de l'aplicació a fosc.
+- **"Mode clar"**: Canvia el tema de l'aplicació a clar.
+
+Si una comanda no es reconeix, apareixerà una notificació vermella a la part inferior.
+
+---
+
 # Vuetify (Default)
 
 This is the official scaffolding tool for Vuetify, designed to give you a head start in building your new Vuetify application. It sets up a base template with all the necessary configurations and standard directory structure, enabling you to begin development without the hassle of setting up the project from scratch.

@@ -35,11 +35,17 @@ export default defineConfig({
         ],
       },
     }),
-    // --- AÑADIR ESTO ---
-    electron({
-      entry: 'electron/main.js',
-    }),
-    // -------------------
+    /* electron([
+      {
+        entry: 'electron/main.js',
+      },
+      {
+        entry: 'electron/preload.js',
+        onstart(options) {
+          options.reload()
+        },
+      },
+    ]), */
   ],
   define: { 'process.env': {} },
   resolve: {
