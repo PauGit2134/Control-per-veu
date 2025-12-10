@@ -1,4 +1,3 @@
-// src/composables/useSpeechRecognition.js
 import { ref } from 'vue';
 
 export function useSpeechRecognition() {
@@ -26,21 +25,21 @@ export function useSpeechRecognition() {
     console.log("🎤 Micròfon obert. Comença a parlar...");
   };
 
-  recognition.onaudiostart = () => console.log("🔊 Àudio detectat (hardware actiu)");
-  recognition.onsoundstart = () => console.log("🔔 So detectat (soroll ambient o veu)");
+  recognition.onaudiostart = () => console.log("Àudio detectat (hardware actiu)");
+  recognition.onsoundstart = () => console.log("So detectat (soroll ambient o veu)");
   
   recognition.onend = () => {
     isListening.value = false;
-    console.log("🛑 Escolta finalitzada.");
+    console.log("Escolta finalitzada.");
   };
 
   recognition.onerror = (event) => {
     isListening.value = false;
-    console.error("❌ Error Speech API:", event.error);
+    console.error("Error Speech API:", event.error);
     error.value = event.error;
     
     if (event.error === 'no-speech') {
-        console.warn("⚠️ Consell: Parla més fort o revisa la configuració del micròfon a l'OS.");
+        console.warn("Consell: Parla més fort o revisa la configuració del micròfon a l'OS.");
     }
   };
 
@@ -51,7 +50,7 @@ export function useSpeechRecognition() {
     for (let i = event.resultIndex; i < event.results.length; ++i) {
       if (event.results[i].isFinal) {
         finalChunk += event.results[i][0].transcript;
-        console.log("✅ Final:", finalChunk);
+        console.log("Final:", finalChunk);
       } else {
         interimChunk += event.results[i][0].transcript;
       }

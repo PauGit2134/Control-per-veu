@@ -4,13 +4,13 @@ import Vue from '@vitejs/plugin-vue'
 import Vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 import Fonts from 'unplugin-fonts/vite'
 import VueRouter from 'unplugin-vue-router/vite'
-import electron from 'vite-plugin-electron' // <--- AÑADIR ESTO
+import electron from 'vite-plugin-electron' 
 
-// Utilities
+// Utilidades
 import { defineConfig } from 'vite'
 import { fileURLToPath, URL } from 'node:url'
 
-// https://vitejs.dev/config/
+// Configuración de Vite (ver https://vitejs.dev/config/)
 export default defineConfig({
   plugins: [
     VueRouter(),
@@ -35,17 +35,9 @@ export default defineConfig({
         ],
       },
     }),
-    /* electron([
-      {
-        entry: 'electron/main.js',
-      },
-      {
-        entry: 'electron/preload.js',
-        onstart(options) {
-          options.reload()
-        },
-      },
-    ]), */
+    electron({
+      entry: 'electron/main.js',
+    }),
   ],
   define: { 'process.env': {} },
   resolve: {
