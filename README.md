@@ -45,7 +45,6 @@ npm install
 Opció A: Mode Desenvolupament (localhost)
 
 ```bash
-Copia el codi
 npm run dev
 ```
 Carrega l'aplicació al navegador amb recàrrega en calent.
@@ -67,14 +66,16 @@ Text d'estat: "Escoltant..." o "En espera"
 
 Botó Escolta per activar el reconeixement de veu
 
-Comandes de Veu Disponibles
-Comanda	Acció	Resposta Visual
-"Saluda"	Mostra missatge de benvinguda	Targeta verda ✅
-"Ajuda"	Mostra informació d'ajuda	Targeta blava ℹ️
-"Mode Fosc"	Activa tema fosc	Interfície fosca 🦉
-"Mode Clar"	Activa tema clar	Interfície clara ☀️
-"Esborra"	Neteja l'estat	Reinicia a estat inicial 🔄
-Altres	Comanda no reconeguda	Avís vermell ❌
+### Comandes de Veu Disponibles
+
+| Comanda      | Acció                               | Resposta Visual          |
+|-------------|-------------------------------------|-------------------------|
+| "Saluda"    | Mostra missatge de benvinguda       | Targeta verda ✅        |
+| "Ajuda"     | Mostra informació d'ajuda           | Targeta blava ℹ️       |
+| "Mode Fosc" | Activa tema fosc                    | Interfície fosca 🦉     |
+| "Mode Clar" | Activa tema clar                    | Interfície clara ☀️     |
+| "Esborra"   | Neteja l'estat                      | Reinicia a estat inicial 🔄 |
+| Altres      | Comanda no reconeguda               | Avís vermell ❌          |
 
 Flux d'Ús Típic
 Prem el botó Escolta per activar el micròfon
@@ -95,8 +96,7 @@ Quan s'executa amb Electron empaquetat, pot haver-hi errors de xarxa (NetworkErr
 Solució Recomanada: Per proves i desenvolupament, utilitza el mode npm run dev per carregar l'aplicació des del servidor local.
 
 📁 Estructura del Projecte
-graphql
-Copia el codi
+```text
 voice-app/
 ├── electron/           # Procés principal d'Electron
 │   └── main.js         # Gestió de finestres i cicle de vida
@@ -109,6 +109,7 @@ voice-app/
 ├── dist/               # Sortida de construcció: frontend
 ├── dist-electron/      # Sortida de construcció: Electron
 └── package.json        # Dependències i scripts
+```
 
 🔧 Scripts Disponibles
 Comanda	Descripció
