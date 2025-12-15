@@ -32,27 +32,29 @@ Una aplicació d'escriptori multiplataforma que permet controlar la interfície 
 Obre la terminal i escriu:  
 ```bash
 git clone https://github.com/PauGit2134/Control-per-veu.git
+```
 2️⃣ Entrar a la carpeta del projecte
-bash
-Copia el codi
+```bash
 cd Control-per-veu/voice-app
+```
 3️⃣ Instal·lar dependències
-bash
-Copia el codi
+```bash
 npm install
+```
 4️⃣ Executar l'aplicació
 Opció A: Mode Desenvolupament (localhost)
 
-bash
+```bash
 Copia el codi
 npm run dev
+```
 Carrega l'aplicació al navegador amb recàrrega en calent.
 
 Opció B: Mode Electron (aplicació d'escriptori)
 
-bash
-Copia el codi
+```bash
 npm run dev:electron
+```
 Construeix l'aplicació i la llança com a aplicació d'escriptori.
 
 🎯 Ús Bàsic de l'Aplicació
@@ -107,20 +109,15 @@ voice-app/
 ├── dist/               # Sortida de construcció: frontend
 ├── dist-electron/      # Sortida de construcció: Electron
 └── package.json        # Dependències i scripts
+
 🔧 Scripts Disponibles
 Comanda	Descripció
 npm run dev	Inicia servidor de desenvolupament
+npm run dev:electron Inicia el elctron
 npm run build	Construeix per a producció
 npm run lint	Executa ESLint amb correcció automàtica
 
 📄 Llicència
 Aquest projecte és una prova de concepte educativa desenvolupada per a l'Activitat 4 del curs de Documentació Professional.
 
-yaml
-Copia el codi
-
 ---
-
-Si vols, puc fer **una versió final amb colors i emojis extra per seccions**, que quedi molt més atractiu visualment al GitHub, llest per enganxar.  
-
-Vols que ho faci també?
