@@ -11,8 +11,8 @@ import { defineConfig } from 'vite'
 import { fileURLToPath, URL } from 'node:url'
 
 // Configuración de Vite (ver https://vitejs.dev/config/)
-export default defineConfig({
-  plugins: [
+export default defineConfig(({ mode }) => {
+  const plugins = [
     VueRouter(),
     Vue({
       template: { transformAssetUrls },
@@ -35,26 +35,33 @@ export default defineConfig({
         ],
       },
     }),
-    electron({
+  ];
+
+  if (mode === 'electron') {
+    plugins.push(electron({
       entry: 'electron/main.js',
-    }),
-  ],
-  define: { 'process.env': {} },
-  resolve: {
-    alias: {
-      '@': fileURLToPath(new URL('src', import.meta.url)),
+    }));
+  }
+
+  return {
+    plugins,
+    define: { 'process.env': {} },
+    resolve: {
+      alias: {
+        '@': fileURLToPath(new URL('src', import.meta.url)),
+      },
+      extensions: [
+        '.js',
+        '.json',
+        '.jsx',
+        '.mjs',
+        '.ts',
+        '.tsx',
+        '.vue',
+      ],
     },
-    extensions: [
-      '.js',
-      '.json',
-      '.jsx',
-      '.mjs',
-      '.ts',
-      '.tsx',
-      '.vue',
-    ],
-  },
-  server: {
-    port: 3000,
-  },
-})
+    server: {
+      port: 3000,
+    },
+  };
+});
