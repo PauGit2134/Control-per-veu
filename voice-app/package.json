@@ -2,7 +2,7 @@
   "name": "voice-app",
   "private": true,
   "version": "0.0.0",
-  "main": "dist-electron/main.js", 
+  "main": "dist-electron/main.js",
   "scripts": {
     "dev": "vite",
     "dev:electron": "vite --mode electron",
@@ -28,6 +28,7 @@
     "unplugin-vue-router": "^0.15.0",
     "vite": "^7.1.5",
     "vite-plugin-electron": "^0.29.0",
+    "vite-plugin-electron-renderer": "^0.14.6",
     "vite-plugin-vuetify": "^2.1.2"
   }
 }

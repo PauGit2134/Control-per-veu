@@ -4,7 +4,8 @@ import Vue from '@vitejs/plugin-vue'
 import Vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 import Fonts from 'unplugin-fonts/vite'
 import VueRouter from 'unplugin-vue-router/vite'
-import electron from 'vite-plugin-electron' 
+import electron from 'vite-plugin-electron'
+import renderer from 'vite-plugin-electron-renderer'
 
 // Utilidades
 import { defineConfig } from 'vite'
@@ -12,6 +13,8 @@ import { fileURLToPath, URL } from 'node:url'
 
 // Configuración de Vite (ver https://vitejs.dev/config/)
 export default defineConfig(({ mode }) => {
+  const isElectron = mode === 'electron'
+
   const plugins = [
     VueRouter(),
     Vue({
@@ -35,12 +38,21 @@ export default defineConfig(({ mode }) => {
         ],
       },
     }),
-  ];
+  ]
 
-  if (mode === 'electron') {
-    plugins.push(electron({
-      entry: 'electron/main.js',
-    }));
+  if (isElectron) {
+    plugins.push(
+      electron([
+        {
+          // Main-Process entry file of the Electron App.
+          entry: 'electron/main.js',
+        },
+      ]),
+      renderer({
+        // Enables use of Node.js API in the Renderer-process
+        nodeIntegration: true,
+      }),
+    )
   }
 
   return {
@@ -63,5 +75,5 @@ export default defineConfig(({ mode }) => {
     server: {
       port: 3000,
     },
-  };
-});
+  }
+})
